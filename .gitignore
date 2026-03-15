@@ -271,3 +271,25 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/java,eclipse,windows,dbeaver,git,intellij,visualstudiocode
+
+# 이클립스 서버 설정 프로젝트 폴더 전체 무시
+Servers/
+
+# 이클립스 작업공간 메타데이터 (이미 위쪽에 있지만 한 번 더 명시)
+.metadata/
+
+# 인텔리제이 및 기타 설정 파일
+.idea/
+.smarttomcat/
+.project
+.classpath
+.settings/
+*.iml
+*.iws
+out/
+
+src/main/resources/db.properties
+db.properties
+jdbc.properties
+.env
+.env.*
