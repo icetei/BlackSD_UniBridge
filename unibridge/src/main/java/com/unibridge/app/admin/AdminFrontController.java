@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.unibridge.app.Result;
+import com.unibridge.app.admin.controller.AdminLoginController;
 import com.unibridge.app.admin.controller.AdminReportController;
 
 public class AdminFrontController extends HttpServlet {
@@ -29,7 +30,16 @@ public class AdminFrontController extends HttpServlet {
 		String target = extractTargetPath(requestURI);
 		Result result = new Result();
 		
+		System.out.println("AdminFrontController 접근");
+		
 		switch (target) {
+		case "login.admin":
+		case "/login.admin":
+			System.out.println("로그인 화면 출력 준비");
+			result = new AdminLoginController().execute(request, response);
+			System.out.println("로그인 화면 출력 완료");
+			break;
+		
 		case  "report.admin":
 		case "/report.admin":
 			result = new AdminReportController().execute(request, response);
