@@ -94,7 +94,8 @@
 							</button>
 							<div class="cacelTitle">매칭 취소 신청서</div>
 							<div class="cancelModalBox">
-								<form>
+								<form method="post" action="${pageContext.request.contextPath}/mvc/auth/mentee/matching.my">
+                                    <input type="hidden" name="matchinNumber" value="${matching.matchinNumber}">
 									<div class="infoGrid">
 										<div class="printRow">
 											<label>멘토 이름</label>
@@ -132,15 +133,15 @@
 										          placeholder="취소 사유를 입력해주세요 (최대 1024자)"></textarea>
 									</div>
 
-									<div class="cancelFooter">
-										<button type="button" class="submitBtn"
-											onclick="submitCancel('${matching.matchinNumber}')">
-											취소 신청</button>
+									<<div class="cencelInputBox">
+                                        <div class="contextTitle">매칭취소 사유</div>
+	                                     <textarea name="matchingCanReason" class="cencelIput"></textarea>
+                                    </div>
 
-										<button type="button" class="cancelBtn"
-											onclick="closeCancelModal('${matching.matchinNumber}')">
-											취소</button>
-									</div>
+                                    	<div class="cancelFooter">
+	                                       <button type="submit" class="submitBtn" onclick="submitCancel('${matching.matchinNumber}')">취소 신청</button>
+                                        	<button type="button" class="cancelBtn" onclick="return submitCancel('${matching.matchinNumber}')">취소</button>                                    
+                                    	</div>
 								</form>
 							</div>
 						</div>
