@@ -185,6 +185,53 @@ input {
     width: 20%; /* .duplication 버튼과 동일한 너비 */
 }
 
+/* [수정] inputRow: 입력창과 버튼을 한 줄에 정렬 */
+.inputRow {
+    display: flex;
+    flex: 1;                 
+    gap: 10px;
+    align-items: center;
+}
+
+/* [수정] duplicationBtn: 기존 .duplication에서 명칭 변경 */
+.duplicationBtn {
+    width: 100px; /* 고정 너비 권장 */
+    padding: 10px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* [추가] errorText: 에러 메시지용 신규 스타일 */
+.errorText {
+    color: #ff4d4f; 
+    font-size: 13px;
+    margin-top: 6px;
+    font-weight: 400;
+    text-align: left;
+    display: block; /* 줄바꿈 유지 */
+}
+
+/* [유지] inputGroup 내 정렬 최적화 */
+.inputGroup {
+    display: flex;
+    flex-direction: column; /* 세로 나열 (라벨 / 입력창+버튼 / 에러메시지 순서) */
+    align-items: flex-start;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+/* [유지] 라벨 가로 정렬이 필요한 경우 flex-direction 조절 */
+.inputGroupRow {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 /* 수정 버튼 우측 하단 absolute */
 .userModifyBtn {
     position: absolute;
