@@ -33,21 +33,11 @@
 		<aside>
 			<div class="myPageTitle">마이페이지</div>
 			<ul>
-				<li><a
-					href="${pageContext.request.contextPath}/app/user/mentor/myPage/myPage.jsp">계정
-						관리</a></li>
-				<li><a
-					href="${pageContext.request.contextPath}/app/user/mentor/myPage/userSurvey/userSurvey.jsp">설문
-						조사</a></li>
-				<li><a
-					href="${pageContext.request.contextPath}/app/user/mentor/myPage/userMatching/userMatching.jsp">매칭
-						정보</a></li>
-				<li><a
-					href="${pageContext.request.contextPath}/app/user/mentor/myPage/userMentoring/mentoringCreate.jsp"
-					class="active">멘토링</a></li>
-				<li><a
-					href="${pageContext.request.contextPath}/app/user/mentor/myPage/userDelete/userDelete.jsp">회원
-						탈퇴</a></li>
+				<li><a href="${pageContext.request.contextPath}/mvc/auth/mentor/myPage.my" >계정 관리</a></li>
+                <li><a href="${pageContext.request.contextPath}/mvc/auth/mentor/survey.my">설문 조사</a></li>
+                <li><a href="${pageContext.request.contextPath}/mvc/auth/mentor/matching.my">매칭 정보</a></li>
+                <li><a href="${pageContext.request.contextPath}/mvc/auth/mentor/mentoringCreate.my" class="active">멘토링</a></li>
+                <li><a href="${pageContext.request.contextPath}/mvc/auth/mentor/app/delete.my">회원 탈퇴</a></li>
 			</ul>
 		</aside>
 
@@ -134,10 +124,10 @@
 
 						<div id="buttons">
 							<button type="button" id="delBtn"
-								onclick="if(confirm('정말로 삭제하시겠습니까?')) { location.href='${pageContext.request.contextPath}/mvc/auth/mentor/mentoringDeleteOk.my?mentoringNumber=${mentoring.internalId}'; }">삭제</button>
+								onclick="if(confirm('정말로 삭제하시겠습니까?')) { location.href='${pageContext.request.contextPath}/mvc/auth/mentor/mentoringDeleteOk.my?mentoringNumber=${mentoring.mentoringNumber}'; }">삭제</button>
 
 							<button type="button" id="modBtn"
-								onclick="location.href='${pageContext.request.contextPath}/mvc/auth/mentor/mentoringModify.my?mentoringNumber=${mentoring.internalId}'">수정</button>
+								onclick="location.href='${pageContext.request.contextPath}/mvc/auth/mentor/mentoringModify.my?mentoringNumber=${mentoring.mentoringNumber}'">수정</button>
 						</div>
 					</div>
 				</div>
