@@ -21,10 +21,10 @@ public class NoticeBoardReadOkController implements Execute {
 		Result result = new Result();
 		
 		//noticeBoardNumber가 빈 문자열이거나 null인 경우
-		String noticeBoardNumberStr = request.getParameter("boardNumber");
+		String noticeBoardNumberStr = request.getParameter("noticeBoardNumber");
 		if(noticeBoardNumberStr == null || noticeBoardNumberStr.trim().isEmpty()) {
 			System.out.println("noticeBoardNumber 값이 없습니다");
-			result.setPath("/app/user/common/noticeBoardList.jsp");
+			result.setPath(request.getContextPath() + "/noticeBoardList.ntb");
 			result.setRedirect(true);
 			return result;
 		}
@@ -40,7 +40,7 @@ public class NoticeBoardReadOkController implements Execute {
 		// 게시글이 존재하지 않을 경우 목록으로 리다이렉트
 		if (noticeBoardListDTO == null) {
 			System.out.println("존재하지 않는 게시물 : " + noticeBoardNumber);
-			result.setPath("/app/user/common/noticeBoardList.jsp");
+			result.setPath(request.getContextPath() + "/noticeBoardList.jsp");
 			result.setRedirect(true);
 			return result;
 		}

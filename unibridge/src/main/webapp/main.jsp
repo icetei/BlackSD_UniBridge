@@ -62,7 +62,9 @@
 						<c:when test="${not empty contestList}">
 							<c:forEach var="contest" items="${contestList}">
 								<div class="contestCard">
-									<div class="contestCardThumbEmpty">
+									<div class="contestCardThumbEmpty"
+										onclick="location.href=`${pageContext.request.contextPath}/common/noticeBoardReadOk.ntb?contestNumber=${contest.contestNumber}`"
+										style="cursor:pointer;">
 										<img
 											src="${pageContext.request.contextPath}/assets/img/UniBridge.png"
 											alt="대회 이미지" />
@@ -122,27 +124,26 @@
 				<c:choose>
 					<c:when test="${not empty mentorCardList}">
 						<c:forEach var="mentor" items="${mentorCardList}">
-							<div class="mentoRecommendCard"
-								data-mento-id="${mentor.mentorNumber}">
-								<%-- 프로필 이미지: member_profile(파일번호)가 있으면 파일 경로로, 없으면 기본 이미지 --%>
-								<c:choose>
-									<c:when test="${mentor.memberProfile > 0}">
-										<img class="mentoRecommendAvatar"
-											src="${pageContext.request.contextPath}/assets/img/profile/${mentor.memberProfile}"
-											alt="${mentor.memberNickname} 프로필" />
-									</c:when>
-									<c:otherwise>
-										<img class="mentoRecommendAvatar"
-											src="${pageContext.request.contextPath}/assets/img/UniBridge.png"
-											alt="기본 프로필" />
-									</c:otherwise>
-								</c:choose>
-								<p class="mentoRecommendName">${mentor.memberNickname}</p>
-								<p class="mentoRecommendSchool">${mentor.subjectName}</p>
-								<p class="mentoRecommendInfo">
-									${mentor.mentoringTitle}<br /> ${mentor.mentoringGoal}
-								</p>
-							</div>
+						    <div class="mentoRecommendCard" onclick="location.href='${pageContext.request.contextPath}/mentor/mentorDetailOk.sch?memberNumber=${mentor.mentorNumber}'">
+						        <div class="mentoRecommendAvatar">
+						            <c:choose>
+						                <c:when test="${not empty mentor.fileName}">
+						                    <img src="${pageContext.request.contextPath}/upload/${mentor.fileName}" alt="프로필">
+						                </c:when>
+						                <c:otherwise>
+						                    <img src="${pageContext.request.contextPath}/static/img/default_avatar.png" alt="기본프로필">
+						                </c:otherwise>
+						            </c:choose>
+						        </div>
+						        <div class="mentoRecommendInfo">
+						            <p class="mentoRecommendName">${mentor.memberNickname} 멘토</p>
+						            <p class="mentoRecommendSchool">${mentor.gradSchool} ${mentor.gradDepart}</p>
+						            <p class="mentoRecommendTitle">${mentor.mentoringTitle}</p>
+						            <div class="mentoRecommendTags">
+						                <span class="tag">${mentor.subjectName}</span>
+						            </div>
+						        </div>
+						    </div>
 						</c:forEach>
 					</c:when>
 
