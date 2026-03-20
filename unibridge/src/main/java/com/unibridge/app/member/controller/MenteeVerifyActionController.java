@@ -95,6 +95,10 @@ public class MenteeVerifyActionController implements Execute {
             String apiKey = ConfigReader.getProperty("solapi.api.key"); //
             String apiSecret = ConfigReader.getProperty("solapi.api.secret"); //
             String from = ConfigReader.getProperty("solapi.from.number"); //
+            
+            // 로그 출력으로 값 확인 (운영 시에는 삭제)
+            System.out.println("[Debug] API Key: " + apiKey);
+            System.out.println("[Debug] From Number: " + from);
 
             String salt = UUID.randomUUID().toString().replaceAll("-", ""); //
             String date = ZonedDateTime.now(ZoneId.of("Asia/Seoul")).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME); //
@@ -121,7 +125,13 @@ public class MenteeVerifyActionController implements Execute {
             try (OutputStream os = conn.getOutputStream()) { //
                 os.write(root.toString().getBytes(StandardCharsets.UTF_8)); //
             }
-            return conn.getResponseCode() == 200; //
+            
+            int responseCode = conn.getResponseCode();
+            System.out.println("[Debug] Solapi Response Code: " + responseCode);
+            
+            // 200이 아니면 실패 원인을 응답 본문에서 읽어와야 함
+            return responseCode == 200;
+//            return conn.getResponseCode() == 200; 
         } catch (Exception e) {
             e.printStackTrace();
             return false;

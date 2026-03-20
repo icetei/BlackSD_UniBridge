@@ -26,11 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        fetch('/mvc/auth/mentee/verifyAction.my?mode=send', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `phoneNumber=${encodeURIComponent(phone)}`
-        })
+		fetch('/unibridge/mvc/auth/mentee/verifyAction.my?mode=send', {
+		    method: 'POST',
+		    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+		    body: `phoneNumber=${encodeURIComponent(phone)}`
+		})
         .then(res => res.text())
         .then(data => {
             if (data === "success") alert("인증번호가 발송되었습니다.");
@@ -49,11 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // 경로를 verifyAction.my로 수정
-        fetch('/mvc/auth/mentee/verifyAction.my?mode=check', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ authCode: code })
-        })
+		fetch('/unibridge/mvc/auth/mentee/verifyAction.my?mode=check', {
+		    method: 'POST',
+		    headers: { 'Content-Type': 'application/json' },
+		    body: JSON.stringify({ authCode: code })
+		})
         .then(res => res.text())
 		.then(data => {
 		    const verifyMsg = document.getElementById('verify-msg'); // 메시지 요소
