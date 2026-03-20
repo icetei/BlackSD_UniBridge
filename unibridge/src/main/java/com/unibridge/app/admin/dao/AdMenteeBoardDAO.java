@@ -15,12 +15,18 @@ public class AdMenteeBoardDAO {
 	   public AdMenteeBoardDAO() {
 	      sqlSession = MyBatisConfig.getSqlSessionFactory().openSession(true);
 	   }
-
+	   //총 개수 조회
 		public int getTotal() {
-			System.out.println("게시글 총 개수 조회 - getTotal 메소드 실행");
+			System.out.println("게시글 총 개수 조회 - getTotal");
 			return sqlSession.selectOne("admin.menteeGetTotal");
 		}
 	   
+		//필터링 개수 조회
+		public int getRenderingTotal(Map<String, Integer> pagefilter) {
+			System.out.println("게시글 필터 후 개수 조회 - getRenderingTotal");
+			return sqlSession.selectOne("admin.menteeGetRenderingTotal", pagefilter);
+		}
+		
 		//멘티 게시판 전체 목록 확인
 		public List<AdMenteeBoardListDTO> selectAll(Map<String, Integer> pageRow){
 			System.out.println("모든 게시글 조회하기");

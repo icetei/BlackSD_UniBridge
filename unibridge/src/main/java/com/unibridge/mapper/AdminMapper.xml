@@ -56,6 +56,11 @@
 		select count(*) from UB_MENTEE_BOARD
 	</select>
 	
+	<select id="menteeGetRenderingTotal" resultType = "int">
+		select count(*) from UB_MENTEE_BOARD 
+		WHERE board_date BETWEEN TO_DATE(#{dateFrom}, 'YYYY-MM-DD') AND TO_DATE(#{dateTo}, 'YYYY-MM-DD') 
+	</select>
+	
 	<select id="menteeSelectAll" resultType = "AdMenteeBoardListDTO">
 		<![CDATA[
 			SELECT * FROM (
