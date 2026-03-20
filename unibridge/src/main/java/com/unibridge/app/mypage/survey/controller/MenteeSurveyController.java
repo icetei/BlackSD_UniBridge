@@ -52,6 +52,11 @@ public class MenteeSurveyController implements Execute {
 		    // surveyMapper.xml의 selectMenteeSurvey 실행
 		    SurveyMenteeDTO survey = dao.selectMenteeSurvey(memberNumber);
 		    
+		    // 사용자 유형 정보를 request에 추가 (예: "mentee" 또는 "mentor")
+	        // DTO의 필드명이 다를 경우 해당 getter로 수정하세요.
+	        request.setAttribute("userRole", loginUser.getMemberType());
+		    
+		    
 		    // 콘솔 출력용 코드
 		    System.out.println("------------------------------------------");
 		    if (survey != null) {

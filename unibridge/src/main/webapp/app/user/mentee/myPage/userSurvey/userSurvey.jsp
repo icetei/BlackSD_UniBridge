@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/footer.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/user/mentee/myPage/userSurvey/userSurvey.css">
+    <script>
+	    // JS 파일에서 사용할 수 있도록 전역 변수 선언
+	    const contextPath = "${pageContext.request.contextPath}";
+	</script>
     <script defer src="${pageContext.request.contextPath}/assets/js/user/mentee/myPage/userSurvey/userSurvey.js"></script>
 </head>
 <body>
@@ -68,10 +72,16 @@
                                 <label>멘토/멘티</label>
                                 <div class="radioGroup">
                                     <label class="radioItem">
-                                        <span>멘토</span> <input type="radio" value="mentor" name="role" class="radioUserType"> 
+                                        <span>멘토</span> 
+                                        <input type="radio" value="mentor" name="role" class="radioUserType"> 
+                                        		${userRole eq 'mentee' ? 'disabled' : ''} 
+                								${userRole eq 'mentor' ? 'checked' : ''}
                                     </label>
                                     <label class="radioItem">
-                                        <span>멘티</span> <input type="radio" value="mentee" name="role" class="radioUserType" checked> 
+                                        <span>멘티</span> 
+                                        <input type="radio" value="mentee" name="role" class="radioUserType"> 
+                                        		${userRole eq 'mentee' ? 'disabled' : ''} 
+                								${userRole eq 'mentor' ? 'checked' : ''}
                                     </label>
                                 </div>
                             </div>
