@@ -6,44 +6,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	if (listContainer) {
 		listContainer.addEventListener("click", (e) => {
-			// 1. 상세보기 클릭 (클래스명 .detail 또는 .view-detail 모두 대응)
+			// 1. 상세보기 클릭
 			const detailBtn = e.target.closest(".detail") || e.target.closest(".view-detail");
 			if (detailBtn) {
 				const item = detailBtn.closest(".list-learning-content") || detailBtn.closest(".report-item");
-				const reportId = item.dataset.id;
-				openDetailPopup(reportId);
+				
+				// JSP의 data-id에 담긴 값은 이제 reportNumber입니다.
+				const reportNumber = item.dataset.id; 
+				openDetailPopup(reportNumber);
 			}
 
 			// 2. 수정하기 클릭
 			const modifyBtn = e.target.closest(".modify");
 			if (modifyBtn) {
-				const reportId = modifyBtn.closest(".list-learning-content").dataset.id;
-				// openModifyPopup(reportId); 
+				const reportNumber = modifyBtn.closest(".list-learning-content").dataset.id;
+				// openModifyPopup(reportNumber); 
 			}
 		});
 	}
 
-	// 작성 버튼 클릭 시 (팝업 오픈)
+	// 작성 버튼 클릭 시
 	if (writeBtn) {
 		writeBtn.onclick = () => {
 			document.querySelector(".popup-container").classList.add("active");
-			// appendStudyLogPopup({ container: ..., type: 'write' });
 		};
 	}
 });
 
-async function openDetailPopup(reportId) {
+async function openDetailPopup(reportNumber) {
 	const popupContainer = document.querySelector(".popup-container");
 
 	try {
-		// .rep 확장자를 사용하여 서블릿을 호출합니다.
-		const response = await fetch(`reportDetail.rep?reportId=${reportId}`);
-		const result = await response.json();
+		// [수정] 파라미터명을 reportNumber로 변경하여 서버(Controller)와 맞춥니다.
+		const response = await fetch(`reportDetailOk.rep?reportNumber=${reportNumber}`);
+		
+		// 서버에서 보낸 JSON 데이터를 받습니다.
+		const data = await response.json();
 
 		popupContainer.classList.add('active');
-		insertLrViewerPopup({ target: popupContainer, data: result.data });
+		
+		// [수정] 전송받은 데이터(data)를 팝업 유틸에 전달합니다.
+		// (기존 코드의 result.data 대신 서버에서 바로 보낸 DTO 객체인 data를 그대로 사용)
+		insertLrViewerPopup({ target: popupContainer, data: data });
 
 	} catch (error) {
 		console.error("데이터 로드 실패:", error);
+		alert("상세 데이터를 불러오는 중 오류가 발생했습니다.");
 	}
 }
