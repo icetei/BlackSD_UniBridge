@@ -13,6 +13,9 @@ import com.unibridge.app.admin.controller.AdminMainController;
 import com.unibridge.app.admin.controller.AdminMenteeBoardController;
 import com.unibridge.app.admin.controller.AdminMentorBoardController;
 import com.unibridge.app.admin.controller.AdminReportController;
+import com.unibridge.app.admin.controller.AdminReportDeleteController;
+import com.unibridge.app.admin.controller.AdminReportDetailController;
+import com.unibridge.app.admin.controller.AdminReportListController;
 import com.unibridge.app.admin.controller.AdminUserMMController;
 
 public class AdminFrontController extends HttpServlet {
@@ -77,6 +80,21 @@ public class AdminFrontController extends HttpServlet {
 	    case  "report.admin":
 		case "/report.admin":
 			result = new AdminReportController().execute(request, response);
+			break;
+			
+		case  "reportList.admin":
+		case "/reportList.admin":
+			result = new AdminReportListController().execute(request, response);
+			break;
+			
+		case  "reportDetail.admin":
+		case "/reportDetail.admin":
+			result = new AdminReportDetailController().execute(request, response);
+			break;
+			
+		case  "reportDelete.admin":
+		case "/reportDelete.admin":
+			result = new AdminReportDeleteController().execute(request, response);
 			break;
 			
 		case  "userMM.admin":
