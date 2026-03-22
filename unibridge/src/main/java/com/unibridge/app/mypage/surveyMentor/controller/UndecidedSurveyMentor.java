@@ -17,7 +17,8 @@ import com.unibridge.app.member.dto.MemberDTO;
 import com.unibridge.app.mypage.survey.dao.SurveyDAO;
 import com.unibridge.app.mypage.surveyMentor.dto.SurveyMentorDTO;
 
-public class SurveyMentorController implements Execute{
+public class UndecidedSurveyMentor implements Execute{
+
 	private Result outResult = new Result();
 
 	@Override
@@ -96,9 +97,8 @@ public class SurveyMentorController implements Execute{
 
         // 6. 결과 설정
         outResult.setRedirect(true);
-        outResult.setPath(request.getContextPath() + "/mvc/auth/mentor/survey.my"); 
+        outResult.setPath(request.getContextPath() + "/mvc/auth/undecided/survey.my"); 
         return outResult;
     }
-	
 
 }

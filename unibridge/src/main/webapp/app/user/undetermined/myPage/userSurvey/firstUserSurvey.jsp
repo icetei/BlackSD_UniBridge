@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>미정 유저 거부 사유</title>
+    <title>미정 유저 설문조사</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/user/undetermined/myPage/userSurvey/userRefusal.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/user/undetermined/myPage/userSurvey/userSurvey.css">
     <script>
 	    // JS 파일에서 사용할 수 있도록 전역 변수 선언
 	    const contextPath = "${pageContext.request.contextPath}";
@@ -23,7 +22,7 @@
         <aside>
             <div class="myPageTitle">마이페이지</div>
             <ul>
-                <li><a href="${pageContext.request.contextPath}/mvc/auth/undecided/myPage.my">계정 관리</a></li>
+                <li><a href="${pageContext.request.contextPath}/mvc/auth/undecided/myPage.my" >계정 관리</a></li>
                 <li><a href="${pageContext.request.contextPath}/mvc/auth/undecided/survey.my" class="active">설문 조사</a></li>
                 <li><a href="${pageContext.request.contextPath}/mvc/auth/undecided/delete.my">회원 탈퇴</a></li>
             </ul>
@@ -33,27 +32,15 @@
                 <img src="${pageContext.request.contextPath}/assets/img/user/userMyPageImg/userManage.jpg" alt="프로필 아이콘">
                 <div class="title">설문조사</div>
             </div>
-            <c:if test="${not empty survey}">
             <div class="userTypeBox">
                 <div class="userText">
                     <label>멘토/멘티</label>
-                    <div class="userType">
-                    	${survey.memberType eq 'MENTEE' ? '멘티' : 
-					      survey.memberType eq 'MENTOR' ? '멘토' : '미정'}
-                    </div>
-                </div>
-                <div class="context"> 
-                <div class="refusalTitle">신청 거부 사유</div>
-                    <div class="refusalContext">
-                        <div class="refusaltext">
-                            ${survey.surveyRejReason}
-                        </div>
-                    </div>
+                    <div class="userType">미정</div>
                 </div>
             </div>
-            <button id="userWriteBtn" style="display: ${survey.surveyApproval eq 'F' ? 'block' : 'none'};">재작성</button>
-            
-            <div id="surveyModal" class="modal"> <div class="modalContent">
+            <button id="userWriteBtn">작성</button>
+            <div id="surveyModal" class="modal">
+                <div class="modalContent">
                     <button class="closeBtn"><img src="${pageContext.request.contextPath}/assets/img/user/userProfile/close.png" alt=""></button>
                     <div class="surveyTitle">설문 조사</div>
                     <div class="modalBox">
@@ -62,15 +49,15 @@
                                 <label>멘토/멘티</label>
                                 <div class="radioGroup">
                                     <label class="radioItem">
-                                        <span>멘토</span> <input type="radio" value="mentor" name="role" class="radioUserType" checked> 
+                                        <span>멘토</span> <input type="radio" value="mentor" name="role" class="radioUserType"> 
                                     </label>
                                     <label class="radioItem">
-                                        <span>멘티</span> <input type="radio" value="mentee" name="role" class="radioUserType"> 
+                                        <span>멘티</span> <input type="radio" value="mentee" name="role" class="radioUserType" checked> 
                                     </label>
                                 </div>
                             </div>
 
-                            <div id="mentorContent" class="mentorContentList" style="display: block;">
+                            <div id="mentorContent" class="mentorContentList" style="display: none;">
                                 <div class="inputRow">
                                     <label>대학</label>
                                     <input type="text" name="gradSchool" class="modalInput">
@@ -99,7 +86,7 @@
                                 </div>
                             </div>
 
-                            <div id="menteeContent" class="menteeContentList" style="display: none;">
+                            <div id="menteeContent" class="menteeContentList" style="display: block;">
                                 <div class="inputRow">
                                     <label>희망 과목</label>
                                     <select name="subjectNumber" class="modalSelect">
@@ -154,10 +141,8 @@
                     </div>
                 </div>
             </div>
-            </c:if>
         </main>
-    </div>
 
-    <script>const contextPath = "${pageContext.request.contextPath}";</script>
+    </div>
 </body>
 </html>
