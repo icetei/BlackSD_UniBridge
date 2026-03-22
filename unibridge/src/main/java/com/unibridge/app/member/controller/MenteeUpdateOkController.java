@@ -20,7 +20,7 @@ public class MenteeUpdateOkController implements Execute {
     public Result execute(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        System.out.println("--------------MenteeMangeController-------------");
+        System.out.println("--------------MenteeUpdateOkController-------------");
 
         String method = request.getMethod().toUpperCase();
 
