@@ -31,6 +31,8 @@
 		<section class="adBanner">
 			<div class="bannerContainer">
 				<div class="bannerContent">
+					<img src="${pageContext.request.contextPath}/assets/img/header.png"
+						alt="메인 광고" />
 					<h1 class="bannerLogo">UNIBRIDGE</h1>
 					<p class="bannerSubtitle">멘토와 멘티를 잇는 다리</p>
 				</div>
