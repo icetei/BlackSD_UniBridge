@@ -36,4 +36,11 @@
         WHERE file_number = #{fileNumber}
     </update>
     
+    
+    <delete id="delete" parameterType="int"> 
+    	DELETE FROM UB_file WHERE file_number = #{fileNumber} 
+    </delete>
+    
+    
+    
 </mapper>

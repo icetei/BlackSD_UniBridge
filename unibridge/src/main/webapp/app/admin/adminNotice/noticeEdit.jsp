@@ -16,48 +16,37 @@
   <div class="form-wrap">
     <h1 class="page-title">공지사항 관리</h1>
 
-    <form id="writeForm">
+    <form id="writeForm" method="post" action = "${pageContext.request.contextPath}/noticeEditOk.admin" enctype="multipart/form-data">
+      
+      <input type="hidden" name="boardNumber" value="${board.noticeboardNumber}">
       <!-- 수정하기 + 제목 입력 -->
-      <div class="form-title-row" style="margin-top: 32px;">
+      <div class="form-title-row">
         <span class="form-title-label">수정하기</span>
         <input
           type="text"
           id="inputTitle"
           class="form-title-input"
-          placeholder="글제목"
+          name="boardTitle"
+          value="${board.boardTitle}"
         />
       </div>
   
       <!-- 내용 -->
-      <textarea
-        id="inputContent"
-        class="form-content-area"
-        placeholder="수정할 글 내용"
-      ></textarea>
+      <textarea id="inputContent" class="form-content-area" name="boardContent">${board.boardContent}</textarea>
   
       <!-- 파일 첨부 -->
       <div class="form-file-section">
         <span class="form-file-label-text">파일 첨부</span>
-        <label style="display:inline-flex; align-items:center; border:1.5px solid #aaa; border-radius:8px; overflow:hidden; font-size:15px;">
-          <span style="padding:8px 14px; background:#e8e8e8; border-right:1px solid #aaa; cursor:pointer; font-family:'NanumSquareRound',sans-serif; font-weight:700;">파일 선택</span>
-          <span id="fileDisplay" style="padding:8px 16px; color:#555; min-width:200px;">선택된 파일 없음</span>
-          <input type="file" id="fileInput" style="display:none;" />
-        </label>
+         <input type="file" id="fileInput" name="file" value="${board.file.fileName}"/>
       </div>
   
       <!-- 버튼 -->
       <div class="form-actions">
-        <button type="button" class="btn btn-blue" id="btnSave">저장</button>
-        <button type="button" class="btn btn-red" id="btnEditDelete">삭제</button>
+        <button type="submit" class="btn btn-blue" id="btnSave">수정</button>
+        <button type="button" class="btn btn-red" id="btnEditCancel">취소</button>
       </div>
 
     </form>
-
-  <script>
-    document.querySelector("label span:first-child").addEventListener("click", () => {
-      document.getElementById("fileInput").click();
-    });
-  </script>
 
 <script>
   fetch("${pageContext.request.contextPath}/header/adminHeader.jsp")
@@ -69,7 +58,11 @@
       document.body.appendChild(s);
     });
 </script>
-  <script src="${pageContext.request.contextPath}/assets/js/admin/adminNotice/noticeData.js"></script>
+
+<script>
+	const boardNumber = "${board.noticeboardNumber}";
+</script>
+
   <script src="${pageContext.request.contextPath}/assets/js/admin/adminNotice/noticeEdit.js"></script>
 </body>
 </html>

@@ -79,6 +79,7 @@
 				document.body.appendChild(s);
 			});
 	</script>
+	
 	<script>
 		const writeNumber = ${board.writeNumber};
 		const sessionNumber = ${loginMemberNumber};

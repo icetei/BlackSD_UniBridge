@@ -7,32 +7,46 @@ import com.unibridge.config.MyBatisConfig;
 
 public class FileDAO {
 	
+	public SqlSession sqlSession;
+
+	public FileDAO() {
+		sqlSession = MyBatisConfig.getSqlSessionFactory().openSession(true);
+	}
+
 	public Integer insertFileIfExists(FileDTO fileDTO) {
+		
+		
 
-        // 파일 없으면 null
-        if (fileDTO == null 
-            || fileDTO.getFileName() == null 
-            || fileDTO.getFileName().isEmpty()
-            || fileDTO.getFileSize() == 0) {
-            return null;
-        }
+		// 파일 없으면 null
+		
+		  if (fileDTO == null || fileDTO.getFileName() == null ||
+		  fileDTO.getFileName().isEmpty() || fileDTO.getFileSize() == 0) { return null;
+		  }
+		  
+		 
+		try (SqlSession session = MyBatisConfig.getSqlSessionFactory().openSession(true)) {
 
-        try (SqlSession session = MyBatisConfig.getSqlSessionFactory().openSession(true)) {
+			System.out.println("파일 insert 실행: " + fileDTO);
 
-            System.out.println("파일 insert 실행: " + fileDTO);
+			session.insert("file.insertFile", fileDTO);
 
-            session.insert("file.insertFile", fileDTO);
+			return fileDTO.getFileNumber();
+		}
+	}
 
-            return fileDTO.getFileNumber();
-        }
-    }
+	public FileDTO selectFile(int fileNumber) {
+		System.out.println("파일 DAO - 파일 조회 시작 (fileNumber=" + fileNumber + ")");
 
-    public FileDTO selectFile(int fileNumber) {
-        System.out.println("파일 DAO - 파일 조회 시작 (fileNumber=" + fileNumber + ")");
+		try (SqlSession session = MyBatisConfig.getSqlSessionFactory().openSession()) {
+			return session.selectOne("file.selectFile", fileNumber);
+		}
+	}
+	
+	public void delete(int fileNumber) {
+		sqlSession.delete("file.delete", fileNumber);
+	}
 
-        try (SqlSession session = MyBatisConfig.getSqlSessionFactory().openSession()) {
-            return session.selectOne("file.selectFile", fileNumber);
-        }
-    }
-   
+	public void update(FileDTO fileDTO) {
+		 sqlSession.update("file.updateFile",fileDTO);
+	}
 }
