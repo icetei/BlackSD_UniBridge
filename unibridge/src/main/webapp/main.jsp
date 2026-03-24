@@ -121,30 +121,19 @@
 									<c:choose>
 										<c:when test="${not empty mentor.fileName}">
 											<img
-												src="${pageContext.request.contextPath}/upload/${mentor.fileName}"
-												alt="프로필">
-										</c:when>
-										<c:when test="${member.memberGender == 'W'}">
-											<img
-												src="${pageContext.request.contextPath}/assets/img/user/userMetor/여자증명사진.png"
-												alt="프로필">
-										</c:when>
-										<c:when test="${member.memberGender == 'M'}">
-											<img
-												src="${pageContext.request.contextPath}/assets/img/user/userMetor/남자증명사진.png"
-												alt="프로필">
+												src="${pageContext.request.contextPath}/assets/img/user/userCompany/profile_003.jpg"
+												alt="기본 프로필">
 										</c:when>
 										<c:otherwise>
-											<img
-												src="${pageContext.request.contextPath}/assets/img/UniBridge.png"
-												alt="기본프로필">
+											<%-- <img
+												src="${pageContext.request.contextPath}/display.file?fileName=${mentor.fileName}"
+												alt="프로필"> --%>
 										</c:otherwise>
 									</c:choose>
 								</div>
 								<div class="mentoRecommendInfo">
 									<p class="mentoRecommendName">${mentor.memberNickname}멘토</p>
-									<p class="mentoRecommendSchool">${mentor.gradSchool}
-										${mentor.gradDepart}</p>
+									<p class="mentoRecommendSchool">${mentor.gradSchool} ${mentor.gradDepart}</p>
 									<p class="mentoRecommendMentoTitle">${mentor.mentoringTitle}</p>
 									<div class="mentoRecommendTags">
 										<span class="tag">${mentor.subjectName}</span>
@@ -196,20 +185,19 @@
 									<c:choose>
 										<c:when test="${not empty company.employmentLog}">
 											<img class="jobBannerCardThumb"
-												src="${pageContext.request.contextPath}/upload/${company.employmentLog}"
-												alt="${company.companyName}" />
+												src="${pageContext.request.contextPath}/assets/img/user/userCompany/취업이미지${imgNum}.PNG"
+												alt="기업 이미지" />
 										</c:when>
 										<c:otherwise>
 											<img class="jobBannerCardThumb"
-												src="${pageContext.request.contextPath}/assets/img/user/userCompany/취업이미지${imgNum}.png"
-												alt="기업 이미지" />
+												src="${pageContext.request.contextPath}/assets/img/Unibridge.png"
+												alt="기본 이미지" />
 										</c:otherwise>
 									</c:choose>
 
 									<p class="jobBannerCardTitle">
 										<c:choose>
-											<c:when test="${not empty company.employmentTitle}">
-                                        ${company.employmentTitle}
+											<c:when test="${not empty company.employmentTitle}"> ${company.employmentTitle}
                                     </c:when>
 											<c:otherwise>
                                         ${company.companyName}
