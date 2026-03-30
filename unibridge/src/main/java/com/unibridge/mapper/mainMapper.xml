@@ -24,31 +24,29 @@
         ]]>
     </select>
 
-    <select id="getMentorCardList" resultType="com.unibridge.app.main.dto.MainDTO$MentorCardDTO">
+<select id="getMentorCardList" resultType="com.unibridge.app.main.dto.MainDTO$MentorCardDTO">
     SELECT *
     FROM (
         SELECT
-            m.MENTORING_NUMBER      AS mentoringNumber, 
-            m.MENTOR_NUMBER    AS mentorNumber,
+            m.MENTORING_NUMBER AS mentoringNumber, 
+            m.MENTOR_NUMBER    AS memberNumber,   /* 상세페이지가 기대하는 이름으로 별칭 */
             m.MENTORING_TITLE  AS mentoringTitle,
             m.MENTORING_GOAL   AS mentoringGoal,
             s.subject_name     AS subjectName,
-            mb.member_nickname AS memberNickname,
-            mb.member_gender    AS memberGender,
-            f.file_name         AS fileName,
-            sm.grad_school      AS gradSchool,
-            sm.grad_depart      AS gradDepart
-            FROM UB_MENTORING m
-        JOIN UB_MEMBER  mb ON m.MENTOR_NUMBER  = mb.member_number
+            mb.member_name AS memberName,
+            mb.member_gender   AS memberGender,
+            f.file_name        AS fileName,
+            sm.grad_school     AS gradSchool,
+            sm.grad_depart     AS gradDepart
+        FROM UB_MENTORING m
+        JOIN UB_MEMBER mb ON m.MENTOR_NUMBER = mb.member_number
         LEFT JOIN UB_SUBJECT s ON m.SUBJECT_NUMBER = s.subject_number
         LEFT JOIN UB_FILE f ON mb.file_number = f.file_number
         LEFT JOIN UB_SURVEY_MENTOR sm ON mb.survey_number = sm.survey_number
         WHERE mb.member_state = '계정 활성화'
         ORDER BY m.CREATED_AT DESC
     )
-    <![CDATA[
-    WHERE ROWNUM <= 7
-    ]]>
+    <![CDATA[ WHERE ROWNUM <= 7 ]]>
 </select>
 
 <select id="getCompanyList" resultType="com.unibridge.app.main.dto.MainDTO$CompanyDTO">
